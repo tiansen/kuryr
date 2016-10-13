@@ -62,6 +62,7 @@ def port_bind(endpoint_id, port, subnets, network=None, nested_port=None):
     try:
         with ip.create(ifname=host_ifname, kind=KIND,
                        reuse=True, peer=container_ifname) as host_veth:
+            #上面只是更新了数据，并没有生成
             if not utils.is_up(host_veth):
                 host_veth.up()
             with ip.interfaces[container_ifname] as container_veth:
